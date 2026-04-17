@@ -1,0 +1,14 @@
+sudo mn --topo linear,3 --switch ovsk --controller none
+
+sh ovs-ofctl del-flows s1
+sh ovs-ofctl del-flows s2
+sh ovs-ofctl del-flows s3
+
+sh ovs-ofctl add-flow s1 "in_port=1,actions=output:2"
+sh ovs-ofctl add-flow s1 "in_port=2,actions=output:1"
+
+sh ovs-ofctl add-flow s2 "in_port=1,actions=output:2"
+sh ovs-ofctl add-flow s2 "in_port=2,actions=output:1"
+
+sh ovs-ofctl add-flow s3 "in_port=1,actions=output:2"
+sh ovs-ofctl add-flow s3 "in_port=2,actions=output:1"
